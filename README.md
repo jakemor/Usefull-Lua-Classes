@@ -1,4 +1,4 @@
-Usefull-Lua-Classes
+Usefull Lua Classes
 ===================
 
-Some must have classes I created for use with Corona SDK
+Classes developed while at Emory University, for use with Corona SDK. 
