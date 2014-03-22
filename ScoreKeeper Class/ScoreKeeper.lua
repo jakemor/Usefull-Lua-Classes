@@ -4,7 +4,7 @@
 
 local ScoreKeeper = {}
 local ScoreKeeper_mt = { __index = ScoreKeeper }
-local safe = require("safe")
+local DataSaver = require("DataSaver")
 
 -----------------
 -- Constructor --
@@ -12,7 +12,7 @@ local safe = require("safe")
 
 function ScoreKeeper.new( key, input )
 	local ScoreKeeper = {
-		safe = safe.new(key, input);
+		safe = DataSaver.new(key, input);
 		key = key
 	}
 

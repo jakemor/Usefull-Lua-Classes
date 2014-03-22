@@ -2,16 +2,16 @@
 -- Locals -- 
 ------------
 
-local safe = {}
-local safe_mt = { __index = safe }
+local DataSaver = {}
+local DataSaver_mt = { __index = DataSaver }
 local json = require( "json" )
 
 -----------------
 -- Constructor --
 -----------------
 
-function safe.new( key, input )
-	local safe = {}
+function DataSaver.new( key, input )
+	local DataSaver = {}
 	
 	-- create path for data saving
 	local path; 
@@ -33,20 +33,20 @@ function safe.new( key, input )
 		file:write( "[]" )
 	else
 		-- if exists, load json data to self data
-		safe = json.decode( file:read( "*a" ) )
+		DataSaver = json.decode( file:read( "*a" ) )
 	end
 
 	-- close file
 	io.close( file )
 	
 	-- save path
-	safe.path = path;
+	DataSaver.path = path;
 	
 	-- nil out
 	file = nil
 	path = nil; 
 	
-	return setmetatable( safe, safe_mt );
+	return setmetatable( DataSaver, DataSaver_mt );
 end
 
 
@@ -55,7 +55,7 @@ end
 -------------
 
 -- SAVE:
-function safe:save( )
+function DataSaver:save( )
 	local file = io.open( self.path, "w+" );
 	file:write( json.encode( self ) );
 	print( "saved!" );
@@ -63,7 +63,7 @@ function safe:save( )
 end
 
 -- CLEAR:
-function safe:clear()
+function DataSaver:clear()
 	for k,v in pairs(self) do
 		if (k ~= "path") then
 			self[k] = nil;
@@ -72,13 +72,13 @@ function safe:clear()
 end
 
 -- PRINT:
-function safe:print( )
+function DataSaver:print( )
 	for k,v in pairs(self) do
 		print( k , v );
 	end
 end
 
-return safe
+return DataSaver
 
 
 

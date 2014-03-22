@@ -2,24 +2,24 @@
 -- Locals -- 
 ------------
 
-local stack = {}
-local stack_mt = { __index = stack }
+local Stack = {}
+local Stack_mt = { __index = Stack }
 
 -----------------
 -- Constructor --
 -----------------
 
-function stack.new(  )
-	local stack = {}
+function Stack.new(  )
+	local Stack = {}
 
-	return setmetatable( stack, stack_mt )
+	return setmetatable( Stack, Stack_mt )
 end
 
 -------------
 -- Methods -- 
 -------------
 
-function stack:print()
+function Stack:print()
 	local string = "["
 	for i=1, #self do
 		string = string .. self[i]
@@ -31,23 +31,23 @@ function stack:print()
 	print( string )
 end
 
-function stack:push( a )
+function Stack:push( a )
 	self[#self + 1] = a
 	return a
 end
 
-function stack:pop()
+function Stack:pop()
 	return table.remove( self )
 end
 
-function stack:length(  )
+function Stack:length(  )
 	return #self
 end
 
-function stack:clear( )
+function Stack:clear( )
 	for i=1, #self do
 		self:pop()
 	end
 end
 
-return stack
+return Stack

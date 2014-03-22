@@ -2,24 +2,24 @@
 -- Locals -- 
 ------------
 
-local queue = {}
-local queue_mt = { __index = queue }
+local Queue = {}
+local Queue_mt = { __index = Queue }
 
 -----------------
 -- Constructor --
 -----------------
 
-function queue.new(  )
-	local queue = {}
+function Queue.new(  )
+	local Queue = {}
 
-	return setmetatable( queue, queue_mt )
+	return setmetatable( Queue, Queue_mt )
 end
 
 -------------
 -- Methods -- 
 -------------
 
-function queue:print()
+function Queue:print()
 	local string = "["
 	for i=1, #self do
 		string = string .. self[i]
@@ -31,23 +31,23 @@ function queue:print()
 	print( string )
 end
 
-function queue:add( a )
+function Queue:add( a )
 	self[#self + 1] = a
 	return a
 end
 
-function queue:remove()
+function Queue:remove()
 	return table.remove( self, 1 )
 end
 
-function queue:length(  )
+function Queue:length(  )
 	return #self
 end
 
-function queue:clear( )
+function Queue:clear( )
 	for i=1, #self do
 		self:pop()
 	end
 end
 
-return queue
+return Queue
